@@ -79,9 +79,83 @@ namespace caminomascorto
             pantalla.Text=m;
         }// void matriz()
 
+        void ciclos(bool[,] A, bool[,] R, int n)
+        {
+            int c = 0;
+            int i, j, k;
+            R = A;
+            for (k = 0; k < n; k++)
+            {
+                for (i = 0; i < n; i++)
+                    for (j = 0; j < n; j++)
+                        R[i, j] = R[i, j] || (R[i, k] && R[k, j]);
+            }
+            String m = "";
+            for (int p = 0; p < x.GetLength(0); p++)
+            {
+                for (int o = 0; o < x.GetLength(1); o++)
+                {
+                    if (R[p, o] == false)
+                        m += "0";
+                    else
+                        m += 1;
+                }
+                {
+                    m += "\n"; 
+                }
+                
+            }
+            int c1 = 0;
+            for (int s=0;s<m.Length;s++)
+            {
+                if (m[s] == '1')
+                {
+                    c1++;
+                    if (c1 == x.GetLength(0))
+                        c++;
+                }
+                else c1 = 0;
+            }
+            MessageBox.Show("ciclos " +c);
+        }// void ciclos
+
+        void caminos(bool[,] A, bool[,] R, int n)
+        {
+            int i, j, k;
+            R = A;
+            for (k = 0; k < n; k++)
+            {
+                for (i = 0; i < n; i++)
+                    for (j = 0; j < n; j++)
+                        R[i, j] = R[i, j] || (R[i, k] && R[k, j]);
+            }
+            String m = "";
+            for (int p = 0; p < x.GetLength(0); p++)
+            {
+                for (int o = 0; o < x.GetLength(1); o++)
+                {
+                    if (R[p, o] == true)
+                        m += "["+p+","+o+"]==1  ";
+                
+                }
+                m += "\n";
+            }
+            MessageBox.Show(m, "Caminos");
+        }// void caminos
+
         private void algoritmoDeWarshallToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cierreTransitivoWarshall(x, r, x.GetLength(0));
+        }
+
+        private void ciclosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ciclos(x, r, x.GetLength(0));
+        }
+
+        private void caminosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            caminos(x, r, x.GetLength(0));
         }
     }
 }

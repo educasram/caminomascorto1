@@ -76,12 +76,14 @@
             this.ciclosToolStripMenuItem.Name = "ciclosToolStripMenuItem";
             this.ciclosToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.ciclosToolStripMenuItem.Text = "Ciclos";
+            this.ciclosToolStripMenuItem.Click += new System.EventHandler(this.ciclosToolStripMenuItem_Click);
             // 
             // caminosToolStripMenuItem
             // 
             this.caminosToolStripMenuItem.Name = "caminosToolStripMenuItem";
             this.caminosToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.caminosToolStripMenuItem.Text = "Caminos";
+            this.caminosToolStripMenuItem.Click += new System.EventHandler(this.caminosToolStripMenuItem_Click);
             // 
             // excentricidadToolStripMenuItem
             // 

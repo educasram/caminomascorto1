@@ -23,6 +23,7 @@ namespace caminomascorto
         private void Form1_Load(object sender, EventArgs e)
         {
             matriz();
+           this.BackColor = Color.Black;
          }
 
         void cierreTransitivoWarshall(bool[,] A, bool[,] R,int n)
@@ -130,12 +131,22 @@ namespace caminomascorto
                         R[i, j] = R[i, j] || (R[i, k] && R[k, j]);
             }
             String m = "";
+            int[] cam = new int[x.GetLength(0)];
+            for (int t = 0; t < x.GetLength(0); t++)
+                cam[t] = 0;
             for (int p = 0; p < x.GetLength(0); p++)
             {
                 for (int o = 0; o < x.GetLength(1); o++)
                 {
                     if (R[p, o] == true)
-                        m += "["+p+","+o+"]==1  ";
+                    {
+                       // cam[p] = cam[p] + 1;            
+                        {
+                            if (R[o, p] == true)
+                                cam[p] = cam[p] + 1;
+                            m += "[" + p + "," + o + "]==" + cam[p];
+                        }
+                    }
                 
                 }
                 m += "\n";
